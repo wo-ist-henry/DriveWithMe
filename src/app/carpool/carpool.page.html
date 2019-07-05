@@ -1,0 +1,27 @@
+<ion-header *ngIf="selectedCarpool | async as carpool">
+    <ion-toolbar>
+        <ion-title>Mitfahrgelegnheit bei {{carpool.driver}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="selectedCarpool | async as carpool">
+    <div class="text">
+        <div *ngIf="carpool.payment === perDrive">
+            Diesen Monat bist du schon {{getRides(carpool.currentMonth)}} mit {{carpool.driver}} mitgefahren.
+        </div>
+        <div *ngIf="carpool.payment === perDay">
+            Diesen Monat bist du an {{getRides(carpool.currentMonth)}} Tagen mit {{carpool.driver}} mitgefahren.
+        </div>
+    </div>
+    <div class="price">
+        Aktuell belaufen sich die Spritkosten auf {{calculate(getRides(carpool.currentMonth), carpool.price)}}€
+    </div>
+    <div class="buttons">
+        <ion-button [routerLink]="['/carpool', 'archiv', carpool.id]">
+            Zeige Fahrten
+        </ion-button>
+        <ion-button (click)="startDrive()">
+            Los Fahren!!
+        </ion-button>
+    </div>
+</ion-content>

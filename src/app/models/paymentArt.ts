@@ -1,4 +1,4 @@
 export enum paymentArt {
-    perDay,
-    perDrive
+    perDrive,
+    perDay
 }

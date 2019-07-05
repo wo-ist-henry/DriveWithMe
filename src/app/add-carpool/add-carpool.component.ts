@@ -4,7 +4,6 @@ import {DbService} from '../services/db.service';
 import {ModalController, PickerController} from '@ionic/angular';
 import {PickerOptions} from '@ionic/core';
 import {Guid} from 'guid-typescript';
-import {CurrencyPipe} from '@angular/common';
 import {Carpool} from '../models/carpool';
 
 @Component({
@@ -29,7 +28,7 @@ export class AddCarpoolComponent implements OnInit {
 
     save() {
         const carpool = {
-            id: Guid.create(),
+            id: Guid.create().toString(),
             driver: this.carpoolDriver,
             payment: this.zahlartValue,
             price: this.price,

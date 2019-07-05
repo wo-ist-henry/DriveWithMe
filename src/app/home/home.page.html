@@ -10,12 +10,14 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="carpools$ | async as carpools">
-<div *ngFor="let carpool of carpools">
-    <ion-card>
-        <ion-card-header>
-            {{carpool.driver}}
-        </ion-card-header>
-    </ion-card>
-</div>
+<ion-content>
+    <div *ngIf="carpools$ | async as carpools">
+        <div *ngFor="let carpool of carpools">
+            <ion-card [routerLink]="['/', 'carpool', carpool.id]">
+                <ion-card-header>
+                    {{carpool.driver}}
+                </ion-card-header>
+            </ion-card>
+        </div>
+    </div>
 </ion-content>

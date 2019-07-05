@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Carpool} from '../models/carpool';
 import * as localforage from 'localforage';
 import set = Reflect.set;
+import {Guid} from 'guid-typescript';
 
 @Injectable({
     providedIn: 'root'
@@ -13,11 +14,11 @@ export class DbService {
     }
 
     createNewDrive(newCarpool: Carpool) {
-        localforage.getItem(this.carpoolDBName).then((carpoolsDB) => {
-            if (carpoolsDB == null) {
+        localforage.getItem(this.carpoolDBName).then(carpoolDB => {
+            if (carpoolDB == null) {
                 localforage.setItem('carpools', [newCarpool]);
             } else {
-                const newDB: Carpool[] = carpoolsDB as Carpool[];
+                const newDB: Carpool[] = carpoolDB as Carpool[];
                 newDB.push(newCarpool);
                 localforage.setItem(this.carpoolDBName, newDB);
             }
@@ -26,5 +27,30 @@ export class DbService {
 
     getCarpools(): Promise<Carpool[]> {
         return localforage.getItem(this.carpoolDBName).then(data => data) as Promise<Carpool[]>;
+    }
+
+    getCarpool(guid: string): Promise<Carpool> {
+        return this.getCarpools().then(carpools => {
+            return carpools.find(carpool => {
+                if (carpool.id === guid) {
+                    return true;
+                }
+            });
+        });
+    }
+
+    saveCarpool(carpoolForSave: Carpool) {
+        localforage.getItem(this.carpoolDBName).then(carpoolDB => {
+                if (carpoolDB == null) {
+                    localforage.setItem('carpools', [carpoolForSave]);
+                } else {
+                    const db: Carpool[] = carpoolDB as Carpool[];
+                    db.find(carpoolInDB => {
+                        if (carpoolInDB.id === carpoolForSave.id) {
+                        }
+                    })
+                }
+            }
+        );
     }
 }
