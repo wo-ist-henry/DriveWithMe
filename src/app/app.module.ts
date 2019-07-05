@@ -9,14 +9,20 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {NgForageModule} from 'ngforage';
+import {AddCarpoolComponent} from './add-carpool/add-carpool.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
-    declarations: [AppComponent],
-    entryComponents: [],
+    declarations: [
+        AppComponent,
+        AddCarpoolComponent
+    ],
+    entryComponents: [AddCarpoolComponent],
     imports: [
         BrowserModule,
         IonicModule.forRoot(),
         AppRoutingModule,
+        FormsModule,
         NgForageModule.forRoot({
             name: 'DriveWithMe'
         })
