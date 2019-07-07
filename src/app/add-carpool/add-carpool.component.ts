@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {paymentArt} from '../models/paymentArt';
 import {DbService} from '../services/db.service';
-import {ModalController, PickerController} from '@ionic/angular';
+import {AlertController, ModalController, PickerController} from '@ionic/angular';
 import {PickerOptions} from '@ionic/core';
 import {Guid} from 'guid-typescript';
 import {Carpool} from '../models/carpool';
@@ -12,14 +12,15 @@ import {Carpool} from '../models/carpool';
     styleUrls: ['./add-carpool.component.scss'],
 })
 export class AddCarpoolComponent implements OnInit {
-    carpoolDriver: string;
-    zahlartView = 'Bitte wählen';
-    zahlartValue: paymentArt;
-    price: number;
+    public carpoolDriver = '';
+    public zahlartView = 'Bitte wählen';
+    public zahlartValue = paymentArt.default;
+    public price= 0;
 
     constructor(private db: DbService,
                 private modalCtrl: ModalController,
-                private pickerCtrl: PickerController) {
+                private pickerCtrl: PickerController,
+                private alertController: AlertController) {
     }
 
 
@@ -27,15 +28,28 @@ export class AddCarpoolComponent implements OnInit {
     }
 
     save() {
-        const carpool = {
-            id: Guid.create().toString(),
-            driver: this.carpoolDriver,
-            payment: this.zahlartValue,
-            price: this.price,
-            currentMonth: []
-        } as Carpool;
-        this.db.createNewDrive(carpool);
-        this.exit();
+        if (this.carpoolDriver !== '' && this.zahlartValue !== paymentArt.default && this.price !== 0) {
+            const carpool = {
+                id: Guid.create().toString(),
+                driver: this.carpoolDriver,
+                payment: this.zahlartValue,
+                price: this.price,
+                currentMonth: []
+            } as Carpool;
+            this.db.createNewDrive(carpool);
+            this.exit();
+        } else {
+            this.missingInfo();
+        }
+    }
+
+    async missingInfo() {
+        const alert = await this.alertController.create({
+            header: 'Fehler',
+            message: 'Es sind nicht alle Felder ausgefüllt',
+            buttons: ['OK']
+        });
+        await alert.present();
     }
 
     async openPicker() {
@@ -46,7 +60,7 @@ export class AddCarpoolComponent implements OnInit {
                     role: 'cancel'
                 },
                 {
-                    text: 'Done'
+                    text: 'Fertig'
                 }
             ],
             columns: [
