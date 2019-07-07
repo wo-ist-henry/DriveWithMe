@@ -23,9 +23,6 @@ import {FormsModule} from '@angular/forms';
         IonicModule.forRoot(),
         AppRoutingModule,
         FormsModule,
-        NgForageModule.forRoot({
-            name: 'DriveWithMe'
-        })
     ],
     providers: [
         StatusBar,

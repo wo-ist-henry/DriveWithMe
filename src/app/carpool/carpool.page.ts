@@ -4,6 +4,7 @@ import {DbService} from '../services/db.service';
 import {Carpool} from '../models/carpool';
 import {paymentArt} from '../models/paymentArt';
 import * as moment from 'moment';
+import {Tour} from '../models/tour';
 
 @Component({
     selector: 'app-carpool',
@@ -28,9 +29,14 @@ export class CarpoolPage implements OnInit {
     startDrive() {
         this.selectedCarpool.then(carpool => {
             if (carpool.payment === paymentArt.perDay) {
-                carpool.currentMonth.push(moment().format('dd.MM.YYYY'));
+                carpool.currentMonth.push({
+                    day: moment().format('DD.MM.YYYY')
+                } as Tour);
             } else {
-                carpool.currentMonth.push(moment().format('mm:hh dd.MM.YYYY'));
+                carpool.currentMonth.push({
+                    day: moment().format('DD.MM.YYYY'),
+                    time: moment().format('HH:MM')
+                } as Tour);
             }
             this.db.saveCarpool(carpool);
         });

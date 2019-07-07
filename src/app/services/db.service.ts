@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Carpool} from '../models/carpool';
 import * as localforage from 'localforage';
-import set = Reflect.set;
-import {Guid} from 'guid-typescript';
 
 @Injectable({
     providedIn: 'root'
@@ -45,10 +43,13 @@ export class DbService {
                     localforage.setItem('carpools', [carpoolForSave]);
                 } else {
                     const db: Carpool[] = carpoolDB as Carpool[];
-                    db.find(carpoolInDB => {
-                        if (carpoolInDB.id === carpoolForSave.id) {
+                    const index = db.findIndex(carpool => {
+                        if (carpool.id === carpoolForSave.id) {
+                            return true;
                         }
-                    })
+                    });
+                    carpoolDB[index].currentMonth = carpoolForSave.currentMonth;
+                    localforage.setItem(this.carpoolDBName, carpoolDB);
                 }
             }
         );
