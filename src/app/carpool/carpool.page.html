@@ -1,5 +1,6 @@
 <ion-header *ngIf="selectedCarpool | async as carpool">
     <ion-toolbar>
+        <ion-back-button slot="start" defaultHref="\"></ion-back-button>
         <ion-title>Mitfahrgelegnheit bei {{carpool.driver}}</ion-title>
     </ion-toolbar>
 </ion-header>
