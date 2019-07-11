@@ -15,7 +15,7 @@ In second Place DriveWithMe should manage Carpools, how often you drive with som
 To run this project, install it locally using npm:
 ````
 $ cd ../DriveWithMe
-$ npm install`
+$ npm install
 $ ionic serve
 ```` 
 ## Features
