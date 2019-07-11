@@ -1,5 +1,5 @@
 #DriveWithMe
-## Table of contents
+##Table of contents
 * [Introduction](#Introduction)
 * [Technologies](#Technologies)
 * [Setup](#Setup)
@@ -23,7 +23,7 @@ $ ionic serve
 ###ToDo:
 - Delete an existing Carpool
 - Manage Carpools where you are the Driver and calculate fast how much money you get from who
-- Improving UI
+- Improving UI and get own Icons
 - Englisch language support
 - Export and Import your Carpooldata
 - Change your Db origin

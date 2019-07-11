@@ -34,6 +34,7 @@
     "core-js": "^2.5.4",
     "guid-typescript": "^1.0.9",
     "localforage": "^1.7.3",
+    "lodash": "^4.17.14",
     "moment": "^2.24.0",
     "ngforage": "^4.0.3",
     "rxjs": "~6.5.1",
