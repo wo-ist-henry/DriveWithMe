@@ -15,7 +15,7 @@ export class AddCarpoolComponent implements OnInit {
     public carpoolDriver = '';
     public zahlartView = 'Bitte wählen';
     public zahlartValue = paymentArt.default;
-    public price= 0;
+    public price = 0;
 
     constructor(private db: DbService,
                 private modalCtrl: ModalController,

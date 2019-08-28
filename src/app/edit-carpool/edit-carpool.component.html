@@ -1,0 +1,32 @@
+<ion-header class="header">
+  <h1>Die Mitfahrgelegenheit bei {{carpoolDriver}}</h1>
+</ion-header>
+<ion-content class="content">
+  <ion-list no-lines>
+    <ion-item>
+      <ion-label>Fahrer
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input required text-right class="carpoolDrive" type="text" [(ngModel)]="carpoolDriver"></ion-input>
+    </ion-item>
+
+    <ion-item (click)="openPicker()">
+      <ion-label>Zahlart
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-label slot="end" class="zahlart">{{zahlartView}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Preis in €
+        <ion-text color="danger">*</ion-text>
+      </ion-label>
+      <ion-input type="number" text-right [(ngModel)]="price"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div class="buttons">
+    <ion-button (click)="save()">Speichern</ion-button>
+    <ion-button (click)="exit()">Abbrechen</ion-button>
+  </div>
+</ion-content>

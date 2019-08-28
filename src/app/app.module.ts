@@ -8,16 +8,17 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {NgForageModule} from 'ngforage';
 import {AddCarpoolComponent} from './add-carpool/add-carpool.component';
 import {FormsModule} from '@angular/forms';
+import {EditCarpoolComponent} from './edit-carpool/edit-carpool.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        AddCarpoolComponent
+        AddCarpoolComponent,
+        EditCarpoolComponent
     ],
-    entryComponents: [AddCarpoolComponent],
+    entryComponents: [AddCarpoolComponent, EditCarpoolComponent],
     imports: [
         BrowserModule,
         IonicModule.forRoot(),

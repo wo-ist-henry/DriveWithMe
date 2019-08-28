@@ -2,7 +2,10 @@
     <ion-toolbar>
         <ion-back-button slot="start" defaultHref="\"></ion-back-button>
         <ion-title>Mitfahrgelegnheit bei {{carpool.driver}}</ion-title>
-        <ion-icon name="trash" slot="end" (click)="RemoveCarpool()"></ion-icon>
+        <div class="icons" slot="end">
+            <ion-icon class="editIcon" name="create" (click)="editCarpool()" ></ion-icon>
+            <ion-icon name="trash" (click)="removeCarpool()"></ion-icon>
+        </div>
     </ion-toolbar>
 </ion-header>
 

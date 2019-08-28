@@ -49,7 +49,7 @@ export class DbService {
                             return true;
                         }
                     });
-                    carpoolDB[index].currentMonth = carpoolForSave.currentMonth;
+                    carpoolDB[index] = carpoolForSave;
                     localforage.setItem(this.carpoolDBName, carpoolDB);
                 }
             }

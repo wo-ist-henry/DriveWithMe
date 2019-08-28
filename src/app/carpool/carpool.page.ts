@@ -5,8 +5,10 @@ import {Carpool} from '../models/carpool';
 import {paymentArt} from '../models/paymentArt';
 import * as moment from 'moment';
 import {Tour} from '../models/tour';
-import {NavController} from '@ionic/angular';
+import {ModalController, NavController} from '@ionic/angular';
 import {HomePage} from '../home/home.page';
+import {AddCarpoolComponent} from '../add-carpool/add-carpool.component';
+import {EditCarpoolComponent} from '../edit-carpool/edit-carpool.component';
 
 @Component({
     selector: 'app-carpool',
@@ -21,7 +23,8 @@ export class CarpoolPage implements OnInit {
 
     constructor(private route: ActivatedRoute,
                 private db: DbService,
-                private navCtrl: NavController) {
+                private navCtrl: NavController,
+                public modalController: ModalController) {
     }
 
     ngOnInit() {
@@ -53,8 +56,21 @@ export class CarpoolPage implements OnInit {
         return rides * price;
     }
 
-    RemoveCarpool() {
+    removeCarpool() {
         this.db.deleteCarpool(this.id);
         this.navCtrl.pop();
     }
+
+    async editCarpool() {
+            const modal = await this.modalController.create({
+                component: EditCarpoolComponent,
+                componentProps: {
+                    carpool: this.selectedCarpool
+                }
+            });
+            modal.onDidDismiss().then(async _ => {
+                this.selectedCarpool = this.db.getCarpool(this.id);
+            });
+            return await modal.present();
+        }
 }
