@@ -7,6 +7,7 @@ import * as localforage from 'localforage';
 })
 export class DbService {
     private carpoolDBName = 'carpools';
+    private carpoolDB: Carpool;
 
     constructor() {
     }
@@ -53,5 +54,20 @@ export class DbService {
                 }
             }
         );
+    }
+
+    deleteCarpool(carpoolIdForTrash: string) {
+        localforage.getItem(this.carpoolDBName).then(carpoolDB => {
+            if (carpoolDB != null) {
+                const db: Carpool[] = carpoolDB as Carpool[];
+                const index = db.findIndex(carpool => {
+                    if (carpool.id === carpoolIdForTrash) {
+                        return true;
+                    }
+                });
+                db.splice(index, 1);
+                localforage.setItem(this.carpoolDBName, db);
+            }
+        });
     }
 }

@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {DbService} from '../services/db.service';
 import {ModalController} from '@ionic/angular';
 import {AddCarpoolComponent} from '../add-carpool/add-carpool.component';
 import {Carpool} from '../models/carpool';
-import {Guid} from 'guid-typescript';
+
 
 @Component({
     selector: 'app-home',
