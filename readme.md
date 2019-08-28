@@ -25,8 +25,8 @@ npm run start
 npm run test
 ```
 ##ToDo
-- [ ] Delete an existing Carpool
-- [ ] Edit an exiting Carpool
+- [x] Delete an existing Carpool
+- [x] Edit an exiting Carpool
 - [ ] Manage Carpools where you are the Driver and calculate fast how much money you get from who
 - [ ] Improving UI and get own Icons
 - [ ] Improving UI
