@@ -4,7 +4,7 @@
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title>
-            Home
+            Deine Mitfahrzentrale
         </ion-title>
         <ion-icon class="addDrive" name="person-add" slot="end" (click)="AddCarpool()"></ion-icon>
     </ion-toolbar>
@@ -12,9 +12,9 @@
 
 <ion-content>
     <div *ngIf="carpools$ | async as carpools">
-        <div *ngFor="let carpool of carpools">
+        <div *ngFor="let carpool of carpools; let i = index">
             <ion-card [routerLink]="['/', 'carpool', carpool.id]">
-                <ion-card-header>
+                <ion-card-header [ngClass]="getListItemColor(i)">
                     {{carpool.driver}}
                 </ion-card-header>
             </ion-card>

@@ -1,7 +1,7 @@
 <ion-header *ngIf="selectedCarpool | async as carpool">
     <ion-toolbar>
-        <ion-back-button slot="start" defaultHref="\"></ion-back-button>
-        <ion-title>Mitfahrgelegnheit bei {{carpool.driver}}</ion-title>
+        <ion-back-button slot="start" class="backBtn" defaultHref="\"></ion-back-button>
+        <ion-title class="title">{{carpool.driver}}`s</ion-title>
         <div class="icons" slot="end">
             <ion-icon class="editIcon" name="create" (click)="editCarpool()" ></ion-icon>
             <ion-icon name="trash" (click)="removeCarpool()"></ion-icon>
@@ -9,23 +9,24 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="selectedCarpool | async as carpool">
+<ion-content class="background-image" *ngIf="selectedCarpool | async as carpool">
     <div class="text">
         <div *ngIf="carpool.payment === perDrive">
-            Diesen Monat bist du schon {{getRides(carpool.currentMonth)}} mit {{carpool.driver}} mitgefahren.
+            Diesen Monat bist du schon {{getRides(carpool.currentMonth)}} mal mit {{carpool.driver}} mitgefahren.
         </div>
         <div *ngIf="carpool.payment === perDay">
             Diesen Monat bist du an {{getRides(carpool.currentMonth)}} Tagen mit {{carpool.driver}} mitgefahren.
         </div>
-    </div>
-    <div class="price">
-        Aktuell belaufen sich die Spritkosten auf {{calculate(getRides(carpool.currentMonth), carpool.price)}}€
+        <br>
+        <div class="price">
+            Aktuell belaufen sich deine Spritkosten auf {{calculate(getRides(carpool.currentMonth), carpool.price)}}€
+        </div>
     </div>
     <div class="buttons">
-        <ion-button [routerLink]="['/carpool', 'archiv', carpool.id]">
+        <ion-button class="btn" color="dark" [routerLink]="['/carpool', 'archiv', carpool.id]">
             Zeige Fahrten
         </ion-button>
-        <ion-button (click)="startDrive()">
+        <ion-button class="btn" color="dark" (click)="startDrive()">
             Los Fahren!!
         </ion-button>
     </div>

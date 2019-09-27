@@ -34,4 +34,12 @@ export class HomePage implements OnInit {
     loadCarpools() {
      this.carpools$ = this.db.getCarpools();
     }
+
+    getListItemColor(i: number) {
+        if (i % 2 === 0) {
+            return 'even';
+        } else {
+            return 'odd';
+        }
+    }
 }
