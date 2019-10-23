@@ -27,6 +27,8 @@ npm run test
 ##ToDo
 - [x] Delete an existing Carpool
 - [x] Edit an exiting Carpool
+- [ ] Cash up a Carpool and put the data in the archiver
+- [ ] Manage Carpool where People drive in turns
 - [ ] Manage Carpools where you are the Driver and calculate fast how much money you get from who
 - [ ] Improving UI and get own Icons
 - [ ] Improving UI
