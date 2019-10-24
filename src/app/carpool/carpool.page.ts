@@ -82,6 +82,9 @@ export class CarpoolPage implements OnInit {
                 width: '250px',
                 data: carpool
             });
+            dialogRef.afterClosed().subscribe(result => {
+                this.selectedCarpool = this.db.getCarpool(this.id);
+            });
         });
     }
 }
