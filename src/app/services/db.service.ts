@@ -7,7 +7,6 @@ import * as localforage from 'localforage';
 })
 export class DbService {
     private carpoolDBName = 'carpools';
-    private carpoolDB: Carpool;
 
     constructor() {
     }

@@ -1,5 +1,4 @@
 import {paymentArt} from './paymentArt';
-import {Guid} from 'guid-typescript';
 import {Tour} from './tour';
 
 export class Carpool {
