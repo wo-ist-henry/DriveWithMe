@@ -8,4 +8,5 @@ export class Carpool {
     payment: paymentArt;
     price: number;
     currentMonth: Tour[];
+    archive: Tour[];
 }

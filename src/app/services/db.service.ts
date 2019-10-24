@@ -70,4 +70,20 @@ export class DbService {
             }
         });
     }
+
+    payAndMoveToArchive(carpoolIdForArchive: string) {
+        localforage.getItem(this.carpoolDBName).then(carpoolDB => {
+            if (carpoolDB != null) {
+                const db: Carpool[] = carpoolDB as Carpool[];
+                const index = db.findIndex(carpool => {
+                    if (carpool.id === carpoolIdForArchive) {
+                        return true;
+                    }
+                });
+                db[index].archive = db[index].currentMonth;
+                db[index].currentMonth = [];
+                localforage.setItem(this.carpoolDBName, db);
+            }
+        });
+    }
 }

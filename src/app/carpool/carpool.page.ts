@@ -6,9 +6,10 @@ import {paymentArt} from '../models/paymentArt';
 import * as moment from 'moment';
 import {Tour} from '../models/tour';
 import {ModalController, NavController} from '@ionic/angular';
-import {HomePage} from '../home/home.page';
-import {AddCarpoolComponent} from '../add-carpool/add-carpool.component';
 import {EditCarpoolComponent} from '../edit-carpool/edit-carpool.component';
+import {MatDialog} from '@angular/material/dialog';
+import {BillingCheckDialogComponent} from './billing-check-dialog/billing-check-dialog.component';
+import {gasCalculator} from '../models/calculator';
 
 @Component({
     selector: 'app-carpool',
@@ -24,7 +25,8 @@ export class CarpoolPage implements OnInit {
     constructor(private route: ActivatedRoute,
                 private db: DbService,
                 private navCtrl: NavController,
-                public modalController: ModalController) {
+                public modalController: ModalController,
+                public dialog: MatDialog) {
     }
 
     ngOnInit() {
@@ -53,7 +55,7 @@ export class CarpoolPage implements OnInit {
     }
 
     calculate(rides: number, price: number) {
-        return rides * price;
+       return gasCalculator(rides, price);
     }
 
     removeCarpool() {
@@ -73,4 +75,13 @@ export class CarpoolPage implements OnInit {
             });
             return await modal.present();
         }
+
+    billDrive() {
+        this.selectedCarpool.then(carpool => {
+            const dialogRef = this.dialog.open(BillingCheckDialogComponent, {
+                width: '250px',
+                data: carpool
+            });
+        });
+    }
 }
