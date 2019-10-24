@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Carpool} from '../../models/carpool';
 import {gasCalculator} from '../../models/calculator';
 import {DbService} from '../../services/db.service';
@@ -12,7 +12,8 @@ import {DbService} from '../../services/db.service';
 export class BillingCheckDialogComponent implements OnInit {
 
   constructor( @Inject(MAT_DIALOG_DATA) public data: Carpool,
-               private db: DbService) {
+               private dialogRef: MatDialogRef<BillingCheckDialogComponent>,
+               private db: DbService ) {
   }
 
   gasCalc(rides: number, price: number): number {
@@ -24,5 +25,6 @@ export class BillingCheckDialogComponent implements OnInit {
 
   pay() {
     this.db.payAndMoveToArchive(this.data.id);
+    this.dialogRef.close();
   }
 }
