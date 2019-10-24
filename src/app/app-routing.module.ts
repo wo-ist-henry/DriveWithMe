@@ -6,7 +6,8 @@ const routes: Routes = [
     {path: 'mitfahrzentrale', loadChildren: './home/home.module#HomePageModule'},
     {path: 'list', loadChildren: './list/list.module#ListPageModule'},
     {path: 'carpool/:id', loadChildren: './carpool/carpool.module#CarpoolPageModule'},
-    {path: 'carpool/archiv/:id', loadChildren: './carpool/archiv/archiv.module#ArchivPageModule'}
+    {path: 'carpool/archiv/:id', loadChildren: './carpool/archiv/archiv.module#ArchivPageModule'},
+    {path: 'export', loadChildren: './export/export.module#ExportPageModule'}
 ];
 
 @NgModule({

@@ -27,13 +27,12 @@ export class DbService {
         return localforage.getItem(this.carpoolDBName).then(data => data) as Promise<Carpool[]>;
     }
 
-    getCarpool(guid: string): Promise<Carpool> {
-        return this.getCarpools().then(carpools => {
-            return carpools.find(carpool => {
-                if (carpool.id === guid) {
-                    return true;
-                }
-            });
+    async getCarpool(guid: string): Promise<Carpool> {
+        const carpools = await this.getCarpools();
+        return carpools.find(carpool => {
+            if (carpool.id === guid) {
+                return true;
+            }
         });
     }
 

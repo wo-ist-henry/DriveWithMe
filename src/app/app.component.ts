@@ -14,6 +14,10 @@ export class AppComponent {
       title: 'Mitfahrzentrale',
       url: '/mitfahrzentrale',
       icon: 'car'
+    },
+    {
+      title: 'Export Data',
+      url: '/export'
     }
   ];
 
