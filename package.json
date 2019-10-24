@@ -36,6 +36,7 @@
     "cordova-plugin-whitelist": "^1.3.3",
     "core-js": "^2.5.4",
     "guid-typescript": "^1.0.9",
+    "hammerjs": "^2.0.8",
     "localforage": "^1.7.3",
     "lodash": "^4.17.14",
     "moment": "^2.24.0",
