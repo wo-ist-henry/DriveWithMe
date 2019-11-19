@@ -3,9 +3,7 @@ import {paymentArt} from '../models/paymentArt';
 import {DbService} from '../services/db.service';
 import {AlertController, ModalController, PickerController} from '@ionic/angular';
 import {PickerOptions} from '@ionic/core';
-import {Guid} from 'guid-typescript';
 import {Carpool} from '../models/carpool';
-import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'edit-add-carpool',

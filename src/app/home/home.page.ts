@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {DbService} from '../services/db.service';
 import {ModalController} from '@ionic/angular';
 import {AddCarpoolComponent} from '../add-carpool/add-carpool.component';
