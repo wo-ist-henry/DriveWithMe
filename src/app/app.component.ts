@@ -13,11 +13,13 @@ export class AppComponent {
     {
       title: 'Mitfahrzentrale',
       url: '/mitfahrzentrale',
-      icon: 'car'
+      icon: 'car',
+      cy: 'home'
     },
     {
       title: 'Export Data',
-      url: '/export'
+      url: '/export',
+      cy: 'export'
     }
   ];
 

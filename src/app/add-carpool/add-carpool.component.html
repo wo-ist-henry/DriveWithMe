@@ -1,7 +1,8 @@
+<!-- Refactor -->
 <ion-header class="header">
     <h1>Neue Mitfahrgelegenheit</h1>
 </ion-header>
-<ion-content class="content">
+<ion-content class="content" [attr.cy-data]="'AddCarpoolDlg'">
     <ion-list no-lines>
         <ion-item>
             <ion-label>Fahrer
@@ -21,12 +22,12 @@
             <ion-label>Preis in €
                 <ion-text color="danger">*</ion-text>
             </ion-label>
-            <ion-input type="number" text-right [(ngModel)]="price"></ion-input>
+            <ion-input type="number" text-right [(ngModel)]="price" [attr.cy-data]="'charge'"></ion-input>
         </ion-item>
     </ion-list>
 
     <div class="buttons">
-        <ion-button (click)="save()">Speichern</ion-button>
-        <ion-button (click)="exit()">Abbrechen</ion-button>
+        <ion-button (click)="save()" [attr.cy-data]="'saveBtn'">Speichern</ion-button>
+        <ion-button (click)="exit()" [attr.cy-data]="'exitBtn'">Abbrechen</ion-button>
     </div>
 </ion-content>
