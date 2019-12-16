@@ -26,17 +26,22 @@ npm install
 npm run start
 ```
 
+## Cypress Test
+
+```sh
+cypress run
+```
+
 ## ToDo
 - [x] Delete an existing Carpool
 - [x] Edit an exiting Carpool
 - [x] Cash up a Carpool and put the data in the archiver
 - [x] Export and Import your Carpooldata
+- [ ] Change your Db origin
 - [ ] Manage Carpool where People drive in turns
 - [ ] Manage Carpools where you are the Driver and calculate fast how much money you get from who
 - [ ] Improving UI and get own Icons
-- [ ] Improving UI
 - [ ] Englisch language support
-- [ ] Change your Db origin
 
 
 ## Author
