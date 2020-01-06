@@ -1,11 +1,11 @@
 <h1 align="center">Welcome to DriveWithMe 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.1-blue.svg?cacheSeconds=2592000" />
 </p>
 
 > DriveWithMe is in first place a WebApp for me to learn and practice dealing with Angular, Observables and RxJs. In second Place DriveWithMe should manage Carpools, how often you drive with someone and how much money you owe him or her at the end of one Month.
 
-### 🏠 [Homepage](https://DriveWithMe.surge.sh)
+### 🏠 [Homepage](https://DriveWithMe.now.sh)
 
 ## Badges
 <p>
