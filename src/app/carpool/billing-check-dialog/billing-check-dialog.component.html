@@ -1,7 +1,9 @@
-<div class="note">
-  Du bezahlst an {{data.driver }} {{gasCalc(data.currentMonth.length, data.price)}}€
-</div>
+<div [attr.cy-data]="'billingDialog'">
+    <div class="note">
+        Du bezahlst an {{data.driver }} {{gasCalc(data.currentMonth.length, data.price)}}€
+    </div>
 
-<ion-button class="btn" color="dark" (click)="pay()" expand="block">
-  Bezahlen
-</ion-button>
+    <ion-button class="btn" color="dark" (click)="pay()" expand="block" [attr.cy-data]="'payRide'">
+        Bezahlen
+    </ion-button>
+</div>
