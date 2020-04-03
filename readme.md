@@ -14,6 +14,12 @@
   <a href="https://snyk.io/test/github/HenryThoma/DriveWithMe?targetFile=package.json"><img src="https://snyk.io/test/github/HenryThoma/DriveWithMe/badge.svg?targetFile=package.json" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/HenryThoma/DriveWithMe?targetFile=package.json" style="max-width:100%;"></a>
 </p>
 
+<p>
+<a href="https://codeclimate.com/github/wo-ist-henry/DriveWithMe/maintainability"><img src="https://api.codeclimate.com/v1/badges/07469f116b962fdfbb5e/maintainability" /></a>
+<a href="https://codeclimate.com/github/wo-ist-henry/DriveWithMe/test_coverage"><img src="https://api.codeclimate.com/v1/badges/07469f116b962fdfbb5e/test_coverage" /></a>
+</p>
+
+
 ## Install
 
 ```sh
