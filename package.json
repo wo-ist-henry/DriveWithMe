@@ -46,7 +46,7 @@
     "ngforage": "4.0.3",
     "rxjs": "6.5.4",
     "shelljs": "0.8.3",
-    "tslib": "1.10.0",
+    "tslib": "1.11.0",
     "zone.js": "0.10.2"
   },
   "devDependencies": {
