@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Carpool} from '../models/carpool';
+import {Carpool} from '../Models/Carpool';
 import * as localforage from 'localforage';
 
 @Injectable({

@@ -3,7 +3,7 @@ export enum PaystyleEnum {
     perDay
 }
 
-export class Paystyle {
+export class Payart {
     value: PaystyleEnum;
     viewValue: string;
 }

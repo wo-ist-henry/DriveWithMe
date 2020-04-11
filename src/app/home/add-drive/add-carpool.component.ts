@@ -1,15 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {Paystyle, PaystyleEnum} from '../../Models/paystyle';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {PaystyleEnum} from '../../Models/Payart';
 import {Guid} from 'guid-typescript';
 import {FormControl, Validators} from '@angular/forms';
-import {Carpool} from '../../Models/carpool';
+import {Carpool} from '../../Models/Carpool';
 import {MatDialogRef} from '@angular/material/dialog';
 import {DbService} from '../../Service/db.service';
 
 @Component({
     selector: 'app-add-drive',
     templateUrl: './add-carpool.component.html',
-    styleUrls: ['./add-carpool.component.scss']
+    styleUrls: ['./add-carpool.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddCarpoolComponent implements OnInit {
     paystyles = [{

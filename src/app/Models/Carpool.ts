@@ -1,5 +1,6 @@
-import {PaystyleEnum} from './paystyle';
-import {Tour} from './tour';
+import {PaystyleEnum} from './Payart';
+import {Tour} from './Tour';
+
 
 export class Carpool {
     id: string;
@@ -7,4 +8,5 @@ export class Carpool {
     payment: PaystyleEnum;
     price: number;
     currentMonth: Tour[];
+    archive: Tour[];
 }
