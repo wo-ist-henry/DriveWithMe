@@ -12,11 +12,7 @@ export class AppComponent {
     private isMobileResolution: boolean;
 
     constructor(public dialog: MatDialog) {
-        if (window.innerWidth < 768) {
-            this.isMobileResolution = true;
-        } else {
-            this.isMobileResolution = false;
-        }
+        this.isMobileResolution = window.innerWidth < 768;
     }
 
     addDrive(): void {

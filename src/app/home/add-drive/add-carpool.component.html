@@ -2,22 +2,25 @@
 <form class="add-carpool">
     <mat-form-field class="name">
         <mat-label>Name of Driver</mat-label>
-        <input matInput>
+        <input matInput [formControl]="driverControl">
+        <mat-error *ngIf="driverControl.invalid">Please write a Name for your Driver.</mat-error>
     </mat-form-field>
     <mat-form-field class="paystyle">
         <mat-label>Pay Style</mat-label>
-        <mat-select>
+        <mat-select [formControl]="paymentControl">
             <mat-option *ngFor="let paystyle of paystyles" [value]="paystyle.value">
                 {{paystyle.viewValue}}
             </mat-option>
         </mat-select>
+        <mat-error *ngIf="paymentControl.invalid">Please select an option.</mat-error>
     </mat-form-field>
     <mat-form-field class="name">
         <mat-label>Cost</mat-label>
-        <input matInput>
+        <input matInput inputmode=”numeric” pattern=”[0–9]*” [formControl]="costControl">
+        <mat-error *ngIf="costControl.invalid">Please enter only Digits.</mat-error>
     </mat-form-field>
     <div class="buttons">
-        <button id="save" mat-raised-button color="primary">Save</button>
-        <button id="abort" mat-raised-button color="accent">Abort</button>
+        <button id="save" mat-raised-button color="primary" (click)="save()">Save</button>
+        <button id="abort" mat-raised-button color="accent" (click)="exit()">Abort</button>
     </div>
 </form>

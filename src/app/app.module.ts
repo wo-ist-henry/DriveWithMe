@@ -14,6 +14,7 @@ import {AddCarpoolComponent} from './home/add-drive/add-carpool.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import {MatButtonModule} from '@angular/material/button';
         MatSidenavModule,
         MatDialogModule,
         MatSelectModule,
-        MatButtonModule
+        MatButtonModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]
