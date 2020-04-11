@@ -5,6 +5,7 @@ import {FormControl, Validators} from '@angular/forms';
 import {Carpool} from '../../Models/Carpool';
 import {MatDialogRef} from '@angular/material/dialog';
 import {DbService} from '../../Service/db.service';
+import {isNumber} from './add-carpool.func';
 
 @Component({
     selector: 'app-add-drive',
@@ -13,6 +14,10 @@ import {DbService} from '../../Service/db.service';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddCarpoolComponent implements OnInit {
+
+    constructor(private dialogRef: MatDialogRef<AddCarpoolComponent>,
+                private db: DbService) {
+    }
     paystyles = [{
         value: PaystyleEnum.perDay,
         viewValue: 'Per Day'
@@ -24,16 +29,12 @@ export class AddCarpoolComponent implements OnInit {
     paymentControl = new FormControl('', Validators.required);
     costControl = new FormControl('', Validators.required);
 
-    constructor(private dialogRef: MatDialogRef<AddCarpoolComponent>,
-                private db: DbService) {
-    }
-
     ngOnInit(): void {
     }
 
     save() {
         this.costControl.markAllAsTouched();
-        if (this.driverControl.value !== '' && this.paymentControl.value != null && this.isNumber(this.costControl.value)) {
+        if (this.driverControl.value !== '' && this.paymentControl.value != null && isNumber(this.costControl.value)) {
             const carpool = {
                 id: Guid.create().toString(),
                 driver: this.driverControl.value,
@@ -49,9 +50,5 @@ export class AddCarpoolComponent implements OnInit {
 
     exit() {
         this.dialogRef.close();
-    }
-
-    isNumber(input: string): boolean {
-        return !isNaN(Number(input));
     }
 }
