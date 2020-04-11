@@ -20,11 +20,9 @@ export class AddCarpoolComponent implements OnInit {
         value: PaystyleEnum.perDrive,
         viewValue: 'Per Drive'
     }];
-    driver: string;
-    payment: PaystyleEnum;
     driverControl = new FormControl('', Validators.required);
     paymentControl = new FormControl('', Validators.required);
-    costControl = new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]);
+    costControl = new FormControl('', Validators.required);
 
     constructor(private dialogRef: MatDialogRef<AddCarpoolComponent>,
                 private db: DbService) {
@@ -35,11 +33,11 @@ export class AddCarpoolComponent implements OnInit {
 
     save() {
         this.costControl.markAllAsTouched();
-        if (this.driver !== '' && this.payment != null && this.isNumber(this.costControl.value)) {
+        if (this.driverControl.value !== '' && this.paymentControl.value != null && this.isNumber(this.costControl.value)) {
             const carpool = {
                 id: Guid.create().toString(),
-                driver: this.driver,
-                payment: this.payment,
+                driver: this.driverControl.value,
+                payment: this.paymentControl.value,
                 price: Number(this.costControl.value),
                 currentMonth: []
             } as Carpool;

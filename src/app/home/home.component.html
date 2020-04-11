@@ -1,0 +1,20 @@
+<mat-toolbar>
+    <mat-toolbar-row class="header">
+        <span>DriveWithMe</span>
+        <span class="example-spacer"></span>
+        <div class="buttons">
+            <mat-icon class="icon" aria-hidden="false" aria-label="Example plus icon" (click)="addDrive()">add
+            </mat-icon>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div *ngIf="carpools$ | async as carpools">
+    <div *ngFor="let carpool of carpools; let i = index">
+        <mat-card [routerLink]="['/', 'carpool', carpool.id]" class="card">
+            <mat-card-header [ngClass]="getListItemColor(i)" [attr.cy-data]='"carpool"+i'>
+                {{carpool.driver}}
+            </mat-card-header>
+        </mat-card>
+    </div>
+</div>

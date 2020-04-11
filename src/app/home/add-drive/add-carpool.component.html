@@ -16,7 +16,7 @@
     </mat-form-field>
     <mat-form-field class="name">
         <mat-label>Cost</mat-label>
-        <input matInput inputmode=”numeric” pattern=”[0–9]*” [formControl]="costControl">
+        <input matInput [formControl]="costControl">
         <mat-error *ngIf="costControl.invalid">Please enter only Digits.</mat-error>
     </mat-form-field>
     <div class="buttons">
