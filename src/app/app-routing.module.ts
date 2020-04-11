@@ -1,21 +1,21 @@
-import {NgModule} from '@angular/core';
-import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
-const routes: Routes = [
-    {path: '', redirectTo: 'mitfahrzentrale', pathMatch: 'full'},
-    {path: 'mitfahrzentrale', loadChildren: './home/home.module#HomePageModule'},
-    {path: 'list', loadChildren: './list/list.module#ListPageModule'},
-    {path: 'carpool/:id', loadChildren: './carpool/carpool.module#CarpoolPageModule'},
-    {path: 'carpool/archiv/:id', loadChildren: './carpool/archiv/archiv.module#ArchivPageModule'},
-    {path: 'export', loadChildren: './export/export.module#ExportPageModule'}
-];
+
+const routes: Routes = [ 
+{
+  path: 'Mitfahrzentrale',
+  component: HomeComponent
+},
+{ path: '',
+  redirectTo: '/Mitfahrzentrale',
+  pathMatch: 'full'
+},
+{ path: '**', component: HomeComponent }];
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot(routes, {useHash: true, preloadingStrategy: PreloadAllModules})
-
-    ],
-    exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }

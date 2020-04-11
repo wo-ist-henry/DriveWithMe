@@ -1,7 +1,0 @@
-{
-  "name": "DriveWithMe",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}

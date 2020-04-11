@@ -1,40 +1,25 @@
-import { Component } from '@angular/core';
-
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import {Component} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {AddDriveComponent} from './home/add-drive/add-drive.component';
 
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html'
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public appPages = [
-    {
-      title: 'Mitfahrzentrale',
-      url: '/mitfahrzentrale',
-      icon: 'car',
-      cy: 'home'
-    },
-    {
-      title: 'Export Data',
-      url: '/export',
-      cy: 'export'
-    }
-  ];
+  title = 'DriveWithMe';
 
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar
-  ) {
-    this.initializeApp();
+  constructor(public dialog: MatDialog) {
   }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+  addDrive(): void {
+    const dialogRef = this.dialog.open(AddDriveComponent, {
+      width: '35%',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
     });
   }
 }
