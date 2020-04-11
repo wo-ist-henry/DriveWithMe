@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-add-drive',
-  templateUrl: './add-drive.component.html',
-  styleUrls: ['./add-drive.component.scss']
+  templateUrl: './add-carpool.component.html',
+  styleUrls: ['./add-carpool.component.scss']
 })
-export class AddDriveComponent implements OnInit {
+export class AddCarpoolComponent implements OnInit {
 
   constructor() { }
 

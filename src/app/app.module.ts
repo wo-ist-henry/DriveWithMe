@@ -10,14 +10,14 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import {AddDriveComponent} from './home/add-drive/add-drive.component';
+import {AddCarpoolComponent} from './home/add-drive/add-carpool.component';
 import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AddDriveComponent
+    AddCarpoolComponent
   ],
   imports: [
     BrowserModule,

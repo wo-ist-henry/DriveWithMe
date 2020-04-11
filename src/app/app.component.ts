@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
-import {AddDriveComponent} from './home/add-drive/add-drive.component';
+import {AddCarpoolComponent} from './home/add-drive/add-carpool.component';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,7 @@ export class AppComponent {
   }
 
   addDrive(): void {
-    const dialogRef = this.dialog.open(AddDriveComponent, {
+    const dialogRef = this.dialog.open(AddCarpoolComponent, {
       width: '35%',
     });
 
