@@ -12,6 +12,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {AddCarpoolComponent} from './home/add-drive/add-carpool.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -19,17 +21,19 @@ import {MatDialogModule} from '@angular/material/dialog';
     HomeComponent,
     AddCarpoolComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSidenavModule,
-    MatDialogModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSidenavModule,
+        MatDialogModule,
+        MatSelectModule,
+        MatButtonModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

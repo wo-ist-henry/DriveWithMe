@@ -1,7 +1,23 @@
 <mat-toolbar class="header">Add Drive</mat-toolbar>
 <form class="add-carpool">
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="name">
         <mat-label>Name of Driver</mat-label>
         <input matInput>
     </mat-form-field>
+    <mat-form-field class="paystyle">
+        <mat-label>Pay Style</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let paystyle of paystyles" [value]="paystyle.value">
+                {{paystyle.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="name">
+        <mat-label>Cost</mat-label>
+        <input matInput>
+    </mat-form-field>
+    <div class="buttons">
+        <button id="save" mat-raised-button color="primary">Save</button>
+        <button id="abort" mat-raised-button color="accent">Abort</button>
+    </div>
 </form>

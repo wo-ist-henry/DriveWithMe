@@ -2,3 +2,17 @@
   margin: 0;
   padding: 0;
 }
+.add-carpool{
+  display: flex;
+  flex-direction: column;
+}
+.paystyle, .name {
+  width: 100%;
+}
+.buttons{
+  display:flex;
+  justify-content: flex-end;
+}
+#save{
+  margin-right: 2%;
+}
