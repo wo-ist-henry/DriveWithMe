@@ -1,19 +1,6 @@
-context('home', () => {
-    const checkAddDialogExists = () => {
-        cy.get('[cy-data=saveBtn]').click();
-        cy.get('[cy-data=AddCarpoolDlg]').should('exist');
-        cy.get('.alert-button').click();
-    };
-    const visitHome = () => {
-        cy.visit('/mitfahrzentrale');
-        cy.url().should('include', '/mitfahrzentrale');
-    };
-    const openAddDlg = () => {
-        visitHome();
-        cy.get('[cy-data=addCarpool]').click();
-        cy.get('[cy-data=AddCarpoolDlg]').should('exist');
-    };
+import { openAddDlg, checkAddDialogExists } from "../helpfer.func";
 
+describe('Homeansichts Test', () => {
     it('open AddCarpool', () => {
         openAddDlg();
     });

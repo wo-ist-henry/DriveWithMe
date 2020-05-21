@@ -14,7 +14,7 @@ export class AppComponent {
       title: 'Mitfahrzentrale',
       url: '/mitfahrzentrale',
       icon: 'car',
-      cy: 'home'
+      cy: 'mitfahrzentrale'
     },
     {
       title: 'Export Data',
