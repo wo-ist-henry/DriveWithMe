@@ -2,7 +2,7 @@
   "name": "DriveWithMe",
   "version": "1.0.1",
   "author": "Henry",
-  "homepage": "https://DriveWithMe.surge.sh",
+  "homepage": "https://DriveWithMe.now.sh",
   "scripts": {
     "cy:open": "cypress open",
     "cy:run": "cypress run",
@@ -10,6 +10,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
+    "test-headless": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

@@ -50,7 +50,7 @@ export class CarpoolPage implements OnInit {
         });
     }
 
-    getRides(rides: Tour[]): number {
+     getRides(rides: Tour[]): number {
         return rides.length;
     }
 

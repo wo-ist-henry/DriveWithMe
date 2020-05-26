@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {paymentArt} from '../models/paymentArt';
+import {paymentArt, ZahlArt} from '../models/paymentArt';
 import {DbService} from '../services/db.service';
 import {AlertController, ModalController, PickerController} from '@ionic/angular';
-import {PickerOptions} from '@ionic/core';
 import {Carpool} from '../models/carpool';
+import {openPicker} from '../functions/picker';
 
 @Component({
   selector: 'edit-add-carpool',
@@ -13,8 +13,10 @@ import {Carpool} from '../models/carpool';
 export class EditCarpoolComponent implements OnInit {
   private id: string;
   public carpoolDriver = '';
-  public zahlartView = '';
-  public zahlartValue = paymentArt.default;
+  public zahlart: ZahlArt = {
+    view: '',
+    value: paymentArt.default
+  };
   public price = 0;
   private currentMonth = [];
 
@@ -32,11 +34,11 @@ export class EditCarpoolComponent implements OnInit {
     this.carpool.then(carpool => {
       this.id = carpool.id;
       this.carpoolDriver = carpool.driver;
-      this.zahlartValue = carpool.payment;
+      this.zahlart.value = carpool.payment;
       if (carpool.payment === paymentArt.perDay) {
-        this.zahlartView = 'Pro Tag';
+        this.zahlart.view = 'Pro Tag';
       } else {
-        this.zahlartView = 'Pro Fahrt';
+        this.zahlart.view = 'Pro Fahrt';
       }
       this.price = carpool.price;
       this.currentMonth = carpool.currentMonth;
@@ -44,11 +46,11 @@ export class EditCarpoolComponent implements OnInit {
   }
 
   save() {
-    if (this.carpoolDriver !== '' && this.zahlartValue !== paymentArt.default && this.price !== 0) {
+    if (this.carpoolDriver !== '' && this.zahlart.value !== paymentArt.default && this.price !== 0) {
       const carpool = {
         id: this.id,
         driver: this.carpoolDriver,
-        payment: this.zahlartValue,
+        payment: this.zahlart.value,
         price: this.price,
         currentMonth: this.currentMonth
       } as Carpool;
@@ -69,32 +71,8 @@ export class EditCarpoolComponent implements OnInit {
   }
 
   async openPicker() {
-    const opts: PickerOptions = {
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        },
-        {
-          text: 'Fertig'
-        }
-      ],
-      columns: [
-        {
-          name: 'Zahlart',
-          options: [
-            {text: 'Pro Fahrt', value: paymentArt.perDrive},
-            {text: 'Pro Tag', value: paymentArt.perDay},
-          ]
-        }
-      ]
-    };
-    const picker = await this.pickerCtrl.create(opts);
-    picker.present();
-    picker.onDidDismiss().then(async data => {
-      const col = await picker.getColumn('Zahlart');
-      this.zahlartView = col.options[col.selectedIndex].text;
-      this.zahlartValue = col.options[col.selectedIndex].value;
+    openPicker(this.pickerCtrl).then(zahlArt => {
+      this.zahlart = zahlArt;
     });
   }
 

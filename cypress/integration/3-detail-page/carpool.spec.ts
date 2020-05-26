@@ -1,4 +1,4 @@
-import { openCarpoolPage, resetCosts } from "../helpfer.func";
+import {openCarpoolPage, resetCosts} from '../helpfer.func';
 
 describe('carpool', () => {
     it('open Carpoolpage', () => {
@@ -9,9 +9,9 @@ describe('carpool', () => {
         resetCosts();
         cy.wait(500);
         cy.get('[cy-data=startRide]')
-        .first()
+            .first()
             .click()
             .click();
-        cy.get('.price').should('have.text','Aktuell belaufen sich deine Spritkosten auf 10€');
+        cy.get('.price').should('have.text', 'Aktuell belaufen sich deine Spritkosten auf 10€');
     });
 });

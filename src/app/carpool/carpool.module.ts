@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {MatDialogModule} from '@angular/material/dialog';
 
 
-import { IonicModule } from '@ionic/angular';
+import {IonicModule} from '@ionic/angular';
 
 import { CarpoolPage } from './carpool.page';
 

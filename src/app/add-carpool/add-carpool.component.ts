@@ -1,20 +1,22 @@
-import {Component, OnInit} from '@angular/core';
-import {paymentArt} from '../models/paymentArt';
+import {Component} from '@angular/core';
+import {paymentArt, ZahlArt} from '../models/paymentArt';
 import {DbService} from '../services/db.service';
 import {AlertController, ModalController, PickerController} from '@ionic/angular';
-import {PickerOptions} from '@ionic/core';
 import {Guid} from 'guid-typescript';
 import {Carpool} from '../models/carpool';
+import {openPicker} from '../functions/picker';
 
 @Component({
     selector: 'app-add-carpool',
     templateUrl: './add-carpool.component.html',
     styleUrls: ['./add-carpool.component.scss'],
 })
-export class AddCarpoolComponent implements OnInit {
+export class AddCarpoolComponent {
     public carpoolDriver = '';
-    public zahlartView = 'Bitte wählen';
-    public zahlartValue = paymentArt.default;
+    public zahlart: ZahlArt = {
+        view: 'Bitte wählen',
+        value: paymentArt.default
+    };
     public price = 0;
 
     constructor(private db: DbService,
@@ -23,16 +25,12 @@ export class AddCarpoolComponent implements OnInit {
                 private alertController: AlertController) {
     }
 
-
-    ngOnInit() {
-    }
-
     save() {
-        if (this.carpoolDriver !== '' && this.zahlartValue !== paymentArt.default && this.price !== 0) {
+        if (this.carpoolDriver !== '' && this.zahlart.value !== paymentArt.default && this.price !== 0) {
             const carpool = {
                 id: Guid.create().toString(),
                 driver: this.carpoolDriver,
-                payment: this.zahlartValue,
+                payment: this.zahlart.value,
                 price: this.price,
                 currentMonth: []
             } as Carpool;
@@ -53,32 +51,8 @@ export class AddCarpoolComponent implements OnInit {
     }
 
     async openPicker() {
-        const opts: PickerOptions = {
-            buttons: [
-                {
-                    text: 'Cancel',
-                    role: 'cancel'
-                },
-                {
-                    text: 'Fertig'
-                }
-            ],
-            columns: [
-                {
-                    name: 'Zahlart',
-                    options: [
-                        {text: 'Pro Fahrt', value: paymentArt.perDrive},
-                        {text: 'Pro Tag', value: paymentArt.perDay},
-                    ]
-                }
-            ]
-        };
-        const picker = await this.pickerCtrl.create(opts);
-        picker.present();
-        picker.onDidDismiss().then(async data => {
-            const col = await picker.getColumn('Zahlart');
-            this.zahlartView = col.options[col.selectedIndex].text;
-            this.zahlartValue = col.options[col.selectedIndex].value;
+        openPicker(this.pickerCtrl).then(zahlArt => {
+            this.zahlart = zahlArt;
         });
     }
 

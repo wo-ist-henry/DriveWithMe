@@ -3,3 +3,8 @@ export enum paymentArt {
     perDrive,
     perDay
 }
+
+export class ZahlArt {
+    value: paymentArt;
+    view: string;
+}
