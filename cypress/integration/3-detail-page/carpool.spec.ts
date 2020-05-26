@@ -1,17 +1,20 @@
-import {openCarpoolPage, resetCosts} from '../helpfer.func';
+import {startRide} from '../../support/functions/carpool.po';
 
 describe('carpool', () => {
-    it('open Carpoolpage', () => {
-        openCarpoolPage();
+    context('1080p resolution', () => {
+        beforeEach(() => {
+            cy.viewport(1920, 1080);
+        });
+        it('start Ride on Desktop', () => {
+            startRide();
+        });
     });
-    it('start Ride ', () => {
-        openCarpoolPage();
-        resetCosts();
-        cy.wait(500);
-        cy.get('[cy-data=startRide]')
-            .first()
-            .click()
-            .click();
-        cy.get('.price').should('have.text', 'Aktuell belaufen sich deine Spritkosten auf 10€');
+    context('iphone-x', () => {
+        beforeEach(() => {
+            cy.viewport('iphone-x');
+        });
+        it('start Ride on Mobile', () => {
+            startRide();
+        });
     });
 });
