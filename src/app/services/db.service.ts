@@ -12,23 +12,22 @@ export class DbService {
     }
 
     createNewDrive(newCarpool: Carpool) {
-        localforage.getItem(this.carpoolDBName).then(carpoolDB => {
-            if (carpoolDB == null) {
-                localforage.setItem('carpools', [newCarpool]);
-            } else {
-                const newDB: Carpool[] = carpoolDB as Carpool[];
-                newDB.push(newCarpool);
-                localforage.setItem(this.carpoolDBName, newDB);
-            }
-        });
+        const carpools = this.getCarpools();
+        if (carpools == null) {
+            localStorage.setItem(this.carpoolDBName, JSON.stringify([newCarpool]));
+        } else {
+            const newDB: Carpool[] = carpools;
+            newDB.push(newCarpool);
+            localStorage.setItem(this.carpoolDBName, JSON.stringify(newDB));
+        }
     }
 
-    getCarpools(): Promise<Carpool[]> {
-        return localforage.getItem(this.carpoolDBName).then(data => data) as Promise<Carpool[]>;
+    getCarpools(): Carpool[] {
+        return JSON.parse(localStorage.getItem(this.carpoolDBName));
     }
 
-    async getCarpool(guid: string): Promise<Carpool> {
-        const carpools = await this.getCarpools();
+    getCarpool(guid: string): Carpool {
+        const carpools = this.getCarpools();
         return carpools.find(carpool => {
             if (carpool.id === guid) {
                 return true;
@@ -37,51 +36,47 @@ export class DbService {
     }
 
     saveCarpool(carpoolForSave: Carpool) {
-        localforage.getItem(this.carpoolDBName).then(carpoolDB => {
-                if (carpoolDB == null) {
-                    localforage.setItem('carpools', [carpoolForSave]);
-                } else {
-                    const db: Carpool[] = carpoolDB as Carpool[];
-                    const index = db.findIndex(carpool => {
-                        if (carpool.id === carpoolForSave.id) {
-                            return true;
-                        }
-                    });
-                    carpoolDB[index] = carpoolForSave;
-                    localforage.setItem(this.carpoolDBName, carpoolDB);
+        const carpools = this.getCarpools();
+        if (carpools == null) {
+            carpools.push(carpoolForSave);
+            localStorage.setItem(this.carpoolDBName, JSON.stringify(carpools));
+        } else {
+            const index = carpools.findIndex(carpool => {
+                if (carpool.id === carpoolForSave.id) {
+                    return true;
                 }
-            }
-        );
+            });
+            carpools[index] = carpoolForSave;
+            localStorage.setItem(this.carpoolDBName, JSON.stringify(carpools));
+        }
     }
 
+
     deleteCarpool(carpoolIdForTrash: string) {
-        localforage.getItem(this.carpoolDBName).then(carpoolDB => {
-            if (carpoolDB != null) {
-                const db: Carpool[] = carpoolDB as Carpool[];
-                const index = db.findIndex(carpool => {
-                    if (carpool.id === carpoolIdForTrash) {
-                        return true;
-                    }
-                });
-                db.splice(index, 1);
-                localforage.setItem(this.carpoolDBName, db);
-            }
-        });
+        const carpools = this.getCarpools();
+        if (carpools != null) {
+            const index = carpools.findIndex(carpool => {
+                if (carpool.id === carpoolIdForTrash) {
+                    return true;
+                }
+            });
+            carpools.splice(index, 1);
+            localStorage.setItem(this.carpoolDBName, JSON.stringify(carpools));
+        }
+
     }
 
     payAndMoveToArchive(carpoolIdForArchive: string) {
-        localforage.getItem(this.carpoolDBName).then(carpoolDB => {
-            if (carpoolDB != null) {
-                const db: Carpool[] = carpoolDB as Carpool[];
-                const index = db.findIndex(carpool => {
-                    if (carpool.id === carpoolIdForArchive) {
-                        return true;
-                    }
-                });
-                db[index].archive = db[index].currentMonth;
-                db[index].currentMonth = [];
-                localforage.setItem(this.carpoolDBName, db);
-            }
-        });
+        const carpools = this.getCarpools();
+        if (carpools != null) {
+            const index = carpools.findIndex(carpool => {
+                if (carpool.id === carpoolIdForArchive) {
+                    return true;
+                }
+            });
+            carpools[index].archive = carpools[index].currentMonth;
+            carpools[index].currentMonth = [];
+            localStorage.setItem(this.carpoolDBName, JSON.stringify(carpools));
+        }
     }
 }

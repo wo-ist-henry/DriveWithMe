@@ -18,7 +18,7 @@ import {gasCalculator} from '../models/calculator';
 })
 export class CarpoolPage implements OnInit {
     private id: string;
-    public selectedCarpool: Promise<Carpool>;
+    public selectedCarpool: Carpool;
     public perDay = paymentArt.perDay;
     public perDrive = paymentArt.perDrive;
 
@@ -35,27 +35,25 @@ export class CarpoolPage implements OnInit {
     }
 
     startDrive() {
-        this.selectedCarpool.then(carpool => {
-            if (carpool.payment === paymentArt.perDay) {
-                carpool.currentMonth.push({
-                    day: moment().format('DD.MM.YYYY')
-                } as Tour);
-            } else {
-                carpool.currentMonth.push({
-                    day: moment().format('DD.MM.YYYY'),
-                    time: moment().format('HH:MM')
-                } as Tour);
-            }
-            this.db.saveCarpool(carpool);
-        });
+        if (this.selectedCarpool.payment === paymentArt.perDay) {
+            this.selectedCarpool.currentMonth.push({
+                day: moment().format('DD.MM.YYYY')
+            } as Tour);
+        } else {
+            this.selectedCarpool.currentMonth.push({
+                day: moment().format('DD.MM.YYYY'),
+                time: moment().format('HH:MM')
+            } as Tour);
+        }
+        this.db.saveCarpool(this.selectedCarpool);
     }
 
-     getRides(rides: Tour[]): number {
+    getRides(rides: Tour[]): number {
         return rides.length;
     }
 
     calculate(rides: number, price: number) {
-       return gasCalculator(rides, price);
+        return gasCalculator(rides, price);
     }
 
     removeCarpool() {
@@ -64,27 +62,25 @@ export class CarpoolPage implements OnInit {
     }
 
     async editCarpool() {
-            const modal = await this.modalController.create({
-                component: EditCarpoolComponent,
-                componentProps: {
-                    carpool: this.selectedCarpool
-                }
-            });
-            modal.onDidDismiss().then(async _ => {
-                this.selectedCarpool = this.db.getCarpool(this.id);
-            });
-            return await modal.present();
-        }
+        const modal = await this.modalController.create({
+            component: EditCarpoolComponent,
+            componentProps: {
+                carpool: this.selectedCarpool
+            }
+        });
+        modal.onDidDismiss().then(async _ => {
+            this.selectedCarpool = this.db.getCarpool(this.id);
+        });
+        return await modal.present();
+    }
 
     billDrive() {
-        this.selectedCarpool.then(carpool => {
-            const dialogRef = this.dialog.open(BillingCheckDialogComponent, {
-                width: '250px',
-                data: carpool
-            });
-            dialogRef.afterClosed().subscribe(result => {
-                this.selectedCarpool = this.db.getCarpool(this.id);
-            });
+        const dialogRef = this.dialog.open(BillingCheckDialogComponent, {
+            width: '250px',
+            data: this.selectedCarpool
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            this.selectedCarpool = this.db.getCarpool(this.id);
         });
     }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DbService} from '../services/db.service';
 import {ModalController} from '@ionic/angular';
 import {AddCarpoolComponent} from '../add-carpool/add-carpool.component';
@@ -11,7 +11,7 @@ import {Carpool} from '../models/carpool';
     styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-    public carpools$: Promise<Carpool[]>;
+    public carpools: Carpool[];
 
     constructor(private  db: DbService,
                 public modalController: ModalController) {
@@ -32,7 +32,7 @@ export class HomePage implements OnInit {
     }
 
     loadCarpools() {
-     this.carpools$ = this.db.getCarpools();
+        this.carpools = this.db.getCarpools();
     }
 
     getListItemColor(i: number) {

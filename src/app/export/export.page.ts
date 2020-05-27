@@ -9,7 +9,7 @@ import {DbService} from '../services/db.service';
 export class ExportPage implements OnInit {
 
   public checkedMap = {};
-  public carpools$ = this.db.getCarpools();
+  public carpools = this.db.getCarpools();
 
   constructor(private db: DbService) { }
 
@@ -29,7 +29,7 @@ export class ExportPage implements OnInit {
   }
 
   async exportData() {
-    const carpools = await this.carpools$;
+    const carpools = this.carpools;
 
     const selectedCarpools = Object.keys(this.checkedMap)
         .filter(carpoolId => !!this.checkedMap[carpoolId])
