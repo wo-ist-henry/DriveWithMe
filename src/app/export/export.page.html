@@ -10,7 +10,7 @@
   </p>
 
   <ion-list>
-    <ion-item *ngFor="let carpool of carpools$ | async">
+    <ion-item *ngFor="let carpool of carpools">
       <ion-checkbox slot="start" [(ngModel)]="checkedMap[carpool.id]"></ion-checkbox>
       <ion-label>{{carpool.driver}}</ion-label>
     </ion-item>

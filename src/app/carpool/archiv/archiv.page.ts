@@ -11,7 +11,7 @@ import {paymentArt} from '../../models/paymentArt';
 })
 export class ArchivPage implements OnInit {
     private id: string;
-    public selectedCarpool: Promise<Carpool>;
+    public selectedCarpool: Carpool;
     public proFahrt =  paymentArt.perDrive;
     public proTag = paymentArt.perDay;
 

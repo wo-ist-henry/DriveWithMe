@@ -1,4 +1,5 @@
 import {startRide} from '../../support/functions/carpool.po';
+import {addCarpool} from '../../support/functions/home.po';
 
 describe('carpool', () => {
     context('1080p resolution', () => {
@@ -6,6 +7,7 @@ describe('carpool', () => {
             cy.viewport(1920, 1080);
         });
         it('start Ride on Desktop', () => {
+            addCarpool();
             startRide();
         });
     });
@@ -14,6 +16,7 @@ describe('carpool', () => {
             cy.viewport('iphone-x');
         });
         it('start Ride on Mobile', () => {
+            addCarpool();
             startRide();
         });
     });
