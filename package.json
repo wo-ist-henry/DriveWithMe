@@ -12,7 +12,9 @@
     "test": "ng test",
     "test-headless": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "private": true,
   "dependencies": {
@@ -48,7 +50,8 @@
     "rxjs": "6.5.5",
     "shelljs": "0.8.3",
     "tslib": "1.11.1",
-    "zone.js": "0.10.3"
+    "zone.js": "0.10.3",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@angular-devkit/architect": "0.13.9",
@@ -94,5 +97,6 @@
     "platforms": [
       "browser"
     ]
-  }
+  },
+  "snyk": true
 }
