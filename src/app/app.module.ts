@@ -13,6 +13,7 @@ import {FormsModule} from '@angular/forms';
 import {EditCarpoolComponent} from './edit-carpool/edit-carpool.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {BillingCheckDialogComponent} from './carpool/billing-check-dialog/billing-check-dialog.component';
+import {StoreModule} from '@ngrx/store';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import {BillingCheckDialogComponent} from './carpool/billing-check-dialog/billin
         AppRoutingModule,
         FormsModule,
         BrowserAnimationsModule,
+        StoreModule.forRoot({})
     ],
     providers: [
         StatusBar,
