@@ -3,6 +3,10 @@ import {DbService} from '../services/db.service';
 import {ModalController} from '@ionic/angular';
 import {AddCarpoolComponent} from '../add-carpool/add-carpool.component';
 import {Carpool} from '../models/carpool';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+import {loadCarpools} from './+state/home.actions';
+import {map} from 'rxjs/operators';
 
 
 @Component({
@@ -12,13 +16,20 @@ import {Carpool} from '../models/carpool';
 })
 export class HomePage implements OnInit {
     public carpools: Carpool[];
+    public carpools$: Observable<Carpool[]>;
 
     constructor(private  db: DbService,
-                public modalController: ModalController) {
+                public modalController: ModalController,
+                private store: Store<{ carpools: Carpool[] }>) {
     }
 
     ngOnInit(): void {
-        this.loadCarpools();
+        // this.loadCarpools();
+        this.store.dispatch(loadCarpools());
+        this.carpools$ = this.store.pipe(
+            map(state =>
+                state.carpools
+            ));
     }
 
     async AddCarpool() {
@@ -32,7 +43,7 @@ export class HomePage implements OnInit {
     }
 
     loadCarpools() {
-        this.carpools = this.db.getCarpools();
+        // this.carpools$ = this.db.getCarpools();
     }
 
     getListItemColor(i: number) {

@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import {Routes, RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {MatDialogModule} from '@angular/material/dialog';
 
 import {IonicModule} from '@ionic/angular';
@@ -10,6 +10,8 @@ import {CarpoolPage} from './carpool.page';
 import {StoreModule} from '@ngrx/store';
 
 import * as fromCarpools from './+state/carpool.reducer';
+import {EffectsModule} from '@ngrx/effects';
+import {CarpoolEffect} from './+state/carpool.effect';
 
 const routes: Routes = [
     {
@@ -25,7 +27,8 @@ const routes: Routes = [
         IonicModule,
         RouterModule.forChild(routes),
         MatDialogModule,
-        StoreModule.forFeature(fromCarpools.carpoolFeatureKey, fromCarpools.carpoolReducer)
+        StoreModule.forFeature(fromCarpools.carpoolFeatureKey, fromCarpools.carpoolReducer),
+        EffectsModule.forFeature([CarpoolEffect])
     ],
     declarations: [CarpoolPage]
 })

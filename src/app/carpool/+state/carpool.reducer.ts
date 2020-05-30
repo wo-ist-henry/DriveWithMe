@@ -1,17 +1,17 @@
 import {Carpool} from '../../models/carpool';
 import {createReducer, on} from '@ngrx/store';
-import {loadCarpools} from './carpool.action';
+import {loadCarpool} from './carpool.action';
 
 export const carpoolFeatureKey = 'carpool';
 
 class CarpoolState {
-    carpools: Carpool[];
+    carpool: Carpool;
 }
 
 export const initialState: CarpoolState = {
-    carpools: []
+    carpool: undefined
 };
 
 export const carpoolReducer = createReducer(initialState,
-    on(loadCarpools, (state, action) => ({carpools: action.carpools}))
+    on(loadCarpool, (state, action) => ({carpool: action.carpool}))
 );

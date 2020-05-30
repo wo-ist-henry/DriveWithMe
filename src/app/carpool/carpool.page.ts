@@ -10,6 +10,10 @@ import {EditCarpoolComponent} from '../edit-carpool/edit-carpool.component';
 import {MatDialog} from '@angular/material/dialog';
 import {BillingCheckDialogComponent} from './billing-check-dialog/billing-check-dialog.component';
 import {gasCalculator} from '../models/calculator';
+import {Observable} from 'rxjs';
+import {Store} from '@ngrx/store';
+import {CarpoolLoadingEffect} from './+state/carpool.effect';
+import {map} from 'rxjs/operators';
 
 @Component({
     selector: 'app-carpool',
@@ -21,31 +25,37 @@ export class CarpoolPage implements OnInit {
     public selectedCarpool: Carpool;
     public perDay = paymentArt.perDay;
     public perDrive = paymentArt.perDrive;
+    selectedCarpool$: Observable<Carpool> = this.store.select(state => state.carpool);
 
     constructor(private route: ActivatedRoute,
                 private db: DbService,
                 private navCtrl: NavController,
-                public modalController: ModalController,
-                public dialog: MatDialog) {
+                private modalController: ModalController,
+                private dialog: MatDialog,
+                private store: Store<{ carpool: Carpool }>
+    ) {
     }
 
     ngOnInit() {
-        this.id = this.route.snapshot.paramMap.get('id');
-        this.selectedCarpool = this.db.getCarpool(this.id);
+        // this.id = this.route.snapshot.paramMap.get('id');
+        // this.selectedCarpool = this.db.getCarpool(this.id);
+        this.store.dispatch({type: CarpoolLoadingEffect});
     }
 
     startDrive() {
-        if (this.selectedCarpool.payment === paymentArt.perDay) {
-            this.selectedCarpool.currentMonth.push({
-                day: moment().format('DD.MM.YYYY')
-            } as Tour);
-        } else {
-            this.selectedCarpool.currentMonth.push({
-                day: moment().format('DD.MM.YYYY'),
-                time: moment().format('HH:MM')
-            } as Tour);
-        }
-        this.db.saveCarpool(this.selectedCarpool);
+        this.selectedCarpool$.pipe(map(carpool => {
+            if (carpool.payment === paymentArt.perDay) {
+                carpool.currentMonth.push({
+                    day: moment().format('DD.MM.YYYY')
+                } as Tour);
+            } else {
+                carpool.currentMonth.push({
+                    day: moment().format('DD.MM.YYYY'),
+                    time: moment().format('HH:MM')
+                } as Tour);
+            }
+            this.db.saveCarpool(carpool);
+        }));
     }
 
     getRides(rides: Tour[]): number {

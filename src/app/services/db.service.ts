@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Carpool} from '../models/carpool';
-import * as localforage from 'localforage';
 
 @Injectable({
     providedIn: 'root'
@@ -38,8 +37,7 @@ export class DbService {
     saveCarpool(carpoolForSave: Carpool) {
         const carpools = this.getCarpools();
         if (carpools == null) {
-            carpools.push(carpoolForSave);
-            localStorage.setItem(this.carpoolDBName, JSON.stringify(carpools));
+            localStorage.setItem(this.carpoolDBName, JSON.stringify(carpoolForSave));
         } else {
             const index = carpools.findIndex(carpool => {
                 if (carpool.id === carpoolForSave.id) {
@@ -50,7 +48,6 @@ export class DbService {
             localStorage.setItem(this.carpoolDBName, JSON.stringify(carpools));
         }
     }
-
 
     deleteCarpool(carpoolIdForTrash: string) {
         const carpools = this.getCarpools();

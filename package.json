@@ -33,7 +33,9 @@
     "@ionic-native/splash-screen": "5.25.0",
     "@ionic-native/status-bar": "5.25.0",
     "@ionic/angular": "4.11.10",
+    "@ngrx/effects": "^9.1.2",
     "@ngrx/store": "^9.1.2",
+    "@ngrx/store-devtools": "^9.1.2",
     "cordova-browser": "6.0.0",
     "cordova-plugin-device": "2.0.3",
     "cordova-plugin-ionic-keyboard": "2.2.0",
@@ -51,6 +53,8 @@
     "rxjs": "6.5.5",
     "shelljs": "0.8.4",
     "snyk": "^1.316.1",
+    "ts-action": "^11.0.0",
+    "ts-action-immer": "^3.0.2",
     "tslib": "1.11.1",
     "zone.js": "0.10.3"
   },
