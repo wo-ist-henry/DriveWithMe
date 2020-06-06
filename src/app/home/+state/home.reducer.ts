@@ -17,6 +17,6 @@ export function homeReducer(state = initialState, action: typeof both.actions): 
         case loadCarpools.type:
             return {...state};
         case loadedCarpools.type:
-            return {...state, carpools: action.payload.carpools};
+            return {...state, carpools: action.payload};
     }
 }

@@ -6,7 +6,8 @@ import {Carpool} from '../models/carpool';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {loadCarpools} from './+state/home.actions';
-import {map} from 'rxjs/operators';
+import {filter, map} from 'rxjs/operators';
+import {HomeState} from './+state/home.reducer';
 
 
 @Component({
@@ -20,16 +21,11 @@ export class HomePage implements OnInit {
 
     constructor(private  db: DbService,
                 public modalController: ModalController,
-                private store: Store<{ carpools: Carpool[] }>) {
+                private store: Store<HomeState>) {
     }
 
     ngOnInit(): void {
-        // this.loadCarpools();
-        this.store.dispatch(loadCarpools());
-        this.carpools$ = this.store.pipe(
-            map(state =>
-                state.carpools
-            ));
+        this.loadCarpools();
     }
 
     async AddCarpool() {
@@ -43,7 +39,12 @@ export class HomePage implements OnInit {
     }
 
     loadCarpools() {
-        // this.carpools$ = this.db.getCarpools();
+        this.store.dispatch(loadCarpools());
+        this.carpools$ = this.store.pipe(
+            filter(state => !!state),
+            map(state =>
+                state.home.carpools
+            ));
     }
 
     getListItemColor(i: number) {
