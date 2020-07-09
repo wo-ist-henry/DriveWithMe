@@ -6,7 +6,7 @@ import {Carpool} from '../models/carpool';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {loadCarpools} from './+state/home.actions';
-import {filter, map} from 'rxjs/operators';
+import {filter, map, tap} from 'rxjs/operators';
 import {HomeState} from './+state/home.reducer';
 
 
@@ -21,7 +21,7 @@ export class HomePage implements OnInit {
 
     constructor(private  db: DbService,
                 public modalController: ModalController,
-                private store: Store<HomeState>) {
+                private store: Store<{ carpools: Carpool[] }>) {
     }
 
     ngOnInit(): void {
@@ -40,11 +40,7 @@ export class HomePage implements OnInit {
 
     loadCarpools() {
         this.store.dispatch(loadCarpools());
-        this.carpools$ = this.store.pipe(
-            filter(state => !!state),
-            map(state =>
-                state.home.carpools
-            ));
+        this.carpools$ = this.store.select(state => state.carpools.carpools);
     }
 
     getListItemColor(i: number) {
@@ -53,5 +49,9 @@ export class HomePage implements OnInit {
         } else {
             return 'odd';
         }
+    }
+
+    carpoolId(carpools: Carpool[], index: number): string {
+        return carpools[index].id;
     }
 }

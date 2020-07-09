@@ -14,6 +14,9 @@ import {Observable} from 'rxjs';
 import {Store} from '@ngrx/store';
 import {CarpoolLoadingEffect} from './+state/carpool.effect';
 import {map} from 'rxjs/operators';
+import {loadCarpool} from './+state/carpool.action';
+import {getRides} from './carpool.functions';
+import {HomeState} from '../home/+state/home.reducer';
 
 @Component({
     selector: 'app-carpool',
@@ -25,21 +28,21 @@ export class CarpoolPage implements OnInit {
     public selectedCarpool: Carpool;
     public perDay = paymentArt.perDay;
     public perDrive = paymentArt.perDrive;
-    selectedCarpool$: Observable<Carpool> = this.store.select(state => state.carpool);
+    public selectedCarpool$: Observable<Carpool>;
 
     constructor(private route: ActivatedRoute,
                 private db: DbService,
                 private navCtrl: NavController,
                 private modalController: ModalController,
                 private dialog: MatDialog,
-                private store: Store<{ carpool: Carpool }>
+                private store: Store<HomeState>
     ) {
     }
 
     ngOnInit() {
-        // this.id = this.route.snapshot.paramMap.get('id');
+        this.id = this.route.snapshot.paramMap.get('id');
         // this.selectedCarpool = this.db.getCarpool(this.id);
-        this.store.dispatch({type: CarpoolLoadingEffect});
+        this.selectedCarpool$ = this.store.select(state => state.home.carpools[this.id]);
     }
 
     startDrive() {
@@ -58,8 +61,8 @@ export class CarpoolPage implements OnInit {
         }));
     }
 
-    getRides(rides: Tour[]): number {
-        return rides.length;
+    public getRides(rides: Tour[]): number {
+        return getRides(rides);
     }
 
     calculate(rides: number, price: number) {

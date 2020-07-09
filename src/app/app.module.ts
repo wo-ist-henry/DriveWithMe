@@ -17,6 +17,8 @@ import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
+import {HomeEffect} from './home/+state/home.effect';
+import {homeReducer} from './home/+state/home.reducer';
 
 @NgModule({
     declarations: [
@@ -32,9 +34,9 @@ import {environment} from '../environments/environment';
         AppRoutingModule,
         FormsModule,
         BrowserAnimationsModule,
-        StoreModule.forRoot({}),
-        EffectsModule.forRoot([]),
-        StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !environment.production })
+        StoreModule.forRoot({carpools: homeReducer}),
+        EffectsModule.forRoot([HomeEffect]),
+        StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !environment.production})
     ],
     providers: [
         StatusBar,

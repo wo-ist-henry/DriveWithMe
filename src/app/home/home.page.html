@@ -13,7 +13,7 @@
 <ion-content>
     <div *ngIf="carpools$ | async as carpools">
         <div *ngFor="let carpool of carpools; let i = index">
-            <ion-card [routerLink]="['/', 'carpool', carpool.id]">
+            <ion-card [routerLink]="['/', 'carpool', carpoolId(carpools, i)]">
                 <ion-card-header [ngClass]="getListItemColor(i)" [attr.cy-data]='"carpool"+i'>
                     {{carpool.driver}}
                 </ion-card-header>

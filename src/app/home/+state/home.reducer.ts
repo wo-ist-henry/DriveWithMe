@@ -1,7 +1,7 @@
 import {Carpool} from '../../models/carpool';
 import {both, loadCarpools, loadedCarpools} from './home.actions';
 
-export const homeFeatureKey = 'home';
+export const homeFeatureKey = 'carpools';
 
 
 export interface HomeState {
@@ -17,6 +17,6 @@ export function homeReducer(state = initialState, action: typeof both.actions): 
         case loadCarpools.type:
             return {...state};
         case loadedCarpools.type:
-            return {...state, carpools: action.payload};
+            return {carpools: action.payload};
     }
 }

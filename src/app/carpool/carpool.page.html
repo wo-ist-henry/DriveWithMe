@@ -1,4 +1,4 @@
-<ion-header *ngIf="selectedCarpool">
+<ion-header *ngIf="selectedCarpool$ | async as selectedCarpool">
     <ion-toolbar>
         <ion-back-button slot="start" class="backBtn" defaultHref="mitfahrzentrale"></ion-back-button>
         <ion-title class="title">{{selectedCarpool.driver}}`s</ion-title>
@@ -9,7 +9,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content class="background-image" *ngIf="selectedCarpool">
+<ion-content class="background-image" *ngIf="selectedCarpool$ | async as selectedCarpool">
     <div class="text">
         <div *ngIf="getRides(selectedCarpool.currentMonth) > 0">
             <div *ngIf="selectedCarpool.payment === perDrive">
